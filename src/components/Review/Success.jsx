@@ -1,31 +1,25 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 
 function Success () {
     const [feelingRating, setFeelingRating] = useState('');
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const storeRank = () => {
         dispatch ({
-            type: "ADD_RANKING",
-            payload: {
-                feelingRank: feelingRating
-            }
+            type: "CLEAR_ALL",
+            payload: ('')
         })
+    history.push('/')
     }
     return (
         <div>
-            <h2>How are you feeling today?</h2>
-
-            <label>Feeling?</label>
-            <input 
-                data-testid="input"
-                type="number"
-                placeholder=""
-                value={feelingRating} />
-            <button data-testid="next" onClick={storeRank}>Next</button>
-
+            <h2>THANK YOU</h2>
+            <button data-testid="next" className="newFeedback" onClick={storeRank}>Leave New Feedback</button>
         </div>
     )
 }

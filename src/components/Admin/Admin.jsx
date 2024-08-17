@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import AdminList from './AdminList';
 
 
 function Admin () {
@@ -23,20 +24,6 @@ function Admin () {
         })
     }
 
-    const removeFeedback = (id) => {
-        console.log(id)
-        const feedbackId = Number(id)
-        axios({
-            method: "DELETE",
-            url: ('/api/feedback/$(id)')
-        })
-        .then(response => {
-            getRatings()
-        })
-        .catch((error) => {
-            console.log('error deleting feedback',error)
-        })
-    }
     return(
         <div>
             <table>
@@ -50,23 +37,17 @@ function Admin () {
                     </tr>
                 </thead>
                 <tbody>
-
-                      {allRatings.map((feedback) =>{
-                          const id = (feedback.id)
+                {allRatings.map((feedback) =>{
                         return (
-                            <tr>
-                        <td>{feedback.feeling}</td>
-                        <td>{feedback.understanding}</td>
-                        <td>{feedback.support}</td>
-                        <td>{feedback.comments}</td>
-                        <td><button onClick={removeFeedback(id)}>🗑️</button></td>
-                        </tr>
-                      )})}
-
+                            <AdminList 
+                                key={feedback.id} 
+                                feedback={feedback} 
+                                getRatings={getRatings} /> 
+                        )})}
                 </tbody>
             </table>
         </div>
-    )
+            )
 }
 
 export default Admin;

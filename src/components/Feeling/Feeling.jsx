@@ -9,24 +9,29 @@ function Feeling () {
     const history = useHistory();
 
     const storeRank = () => {
-        dispatch ({
-            type: "FEELING_RANK",
-            payload: feelingRating
-        })
-        history.push('/understand')
+        if(feelingRating > 5 || feelingRating<1) {
+            alert('Use a number between 1 and 5')
+        }
+        else {dispatch ({
+                type: "FEELING_RANK",
+                payload: feelingRating
+            })
+            history.push('/understand')
+        }
     }
     return (
         <div>
             <h2>How are you feeling today?</h2>
-
-            <label>Feeling?</label>
-            <input 
-                data-testid="input"
-                type="number"
-                placeholder="(1-low, 5-high)"
-                onChange={(e) => setFeelingRating(e.target.value)}
-                value={feelingRating} />
-            <button data-testid="next" onClick={storeRank}>Next</button>
+            <form onSubmit={storeRank}>
+                <label>Feeling?</label>
+                <input required
+                    data-testid="input"
+                    type="number"
+                    placeholder="(1-low, 5-high)"
+                    onChange={(e) => setFeelingRating(e.target.value)}
+                    value={feelingRating} />
+                <button data-testid="next">Next</button>
+            </form>
 
         </div>
     )

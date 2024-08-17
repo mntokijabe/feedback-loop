@@ -12,7 +12,7 @@ const feelingRank = (state=(''), action) => {
     }
     return state
 }
-const understandRank = (state=('[]'), action) => {
+const understandRank = (state=(''), action) => {
     if(action.type === "UNDERSTAND_RANK"){
         let rankUpdate = action.payload
         return rankUpdate

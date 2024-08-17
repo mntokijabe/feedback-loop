@@ -29,6 +29,26 @@ router.post('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    const feedbackToDelete = req.params.id;
+
+    const sqlText = `DELETE FROM "feedback"
+                    WHERE "id" = $1;`
+    
+    const sqlValues = [feedbackToDelete]
+
+    pool.query(sqlText,sqlValues)
+    .then((dbResult) => {
+        res.sendStatus(201)
+    })
+    .catch((dbError)=> {
+        console.log('error deleting from dB',dbError)
+        res.sendStatus(500)
+    })
+})
+
+
+
 // DO NOT EDIT THIS ROUTE
 // This route must return all feedback.
 router.get('/', (req, res) => {

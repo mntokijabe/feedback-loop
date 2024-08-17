@@ -9,24 +9,29 @@ function Supported () {
     const history = useHistory();
 
     const storeRank = () => {
-        dispatch ({
-            type: "SUPPORTED_RANK",
-            payload: supportedRating
-        })
-        history.push('/comments')
+        if(supportedRating > 5 || supportedRating<1) {
+            alert('Use a number between 1 and 5')
+        }
+        else {dispatch ({
+                type: "SUPPORTED_RANK",
+                payload: supportedRating
+            })
+            history.push('/comments')
+        }
     }
     return (
         <div>
             <h2>How well are you being supported?</h2>
-
-            <label>supported?</label>
-            <input 
-                data-testid="input"
-                type="number"
-                placeholder="(1-low, 5-high)"
-                onChange={(e) => setSupportedRating(e.target.value)}
-                value={supportedRating} />
-            <button data-testid="next" onClick={storeRank}>Next</button>
+            <form onSubmit={storeRank}>
+                <label>supported?</label>
+                <input required
+                    data-testid="input"
+                    type="number"
+                    placeholder="(1-low, 5-high)"
+                    onChange={(e) => setSupportedRating(e.target.value)}
+                    value={supportedRating} />
+                <button data-testid="next">Next</button>
+            </form>
 
         </div>
     )

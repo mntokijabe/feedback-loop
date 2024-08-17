@@ -1,29 +1,31 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function Supported () {
-    const [feelingRating, setFeelingRating] = useState('');
+    const [supportedRating, setSupportedRating] = useState('');
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const storeRank = () => {
         dispatch ({
-            type: "ADD_RANKING",
-            payload: {
-                feelingRank: feelingRating
-            }
+            type: "SUPPORTED_RANK",
+            payload: supportedRating
         })
+        history.push('/comments')
     }
     return (
         <div>
-            <h2>How are you feeling today?</h2>
+            <h2>How well are you being supported?</h2>
 
-            <label>Feeling?</label>
+            <label>supported?</label>
             <input 
                 data-testid="input"
                 type="number"
-                placeholder=""
-                value={feelingRating} />
+                placeholder="(1-low, 5-high)"
+                onChange={(e) => setSupportedRating(e.target.value)}
+                value={supportedRating} />
             <button data-testid="next" onClick={storeRank}>Next</button>
 
         </div>

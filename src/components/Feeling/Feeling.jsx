@@ -10,10 +10,8 @@ function Feeling () {
 
     const storeRank = () => {
         dispatch ({
-            type: "ADD_RANKING",
-            payload: {
-                feelingRank: feelingRating
-            }
+            type: "FEELING_RANK",
+            payload: feelingRating
         })
         history.push('/understand')
     }
@@ -25,7 +23,7 @@ function Feeling () {
             <input 
                 data-testid="input"
                 type="number"
-                placeholder="(1 to 5)"
+                placeholder="(1-low, 5-high)"
                 onChange={(e) => setFeelingRating(e.target.value)}
                 value={feelingRating} />
             <button data-testid="next" onClick={storeRank}>Next</button>

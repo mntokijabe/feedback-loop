@@ -1,17 +1,40 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import logger from 'redux-logger';
 
-const setRank = (state=[], action) => {
-    if(action.type === "ADD_RANKING"){
-        let rankUpdate = [...state, action.payload]
+const feelingRank = (state=(''), action) => {
+    if(action.type === "FEELING_RANK"){
+        let rankUpdate = action.payload
         return rankUpdate
     }
     return state
 }
-
+const understandRank = (state=('[]'), action) => {
+    if(action.type === "UNDERSTAND_RANK"){
+        let rankUpdate = action.payload
+        return rankUpdate
+    }
+    return state
+}
+const supportedRank = (state=(''), action) => {
+    if(action.type === "SUPPORTED_RANK"){
+        let rankUpdate = action.payload
+        return rankUpdate
+    }
+    return state
+}
+const comments = (state=(''), action) => {
+    if(action.type === "COMMENTS"){
+        let rankUpdate = action.payload
+        return rankUpdate
+    }
+    return state
+}
 const store = createStore(
     combineReducers({
-        setRank
+        feelingRank,
+        supportedRank,
+        understandRank,
+        comments
     }),
     applyMiddleware(logger),
   );

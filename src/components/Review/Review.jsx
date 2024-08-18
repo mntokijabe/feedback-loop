@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function Review () {
@@ -32,13 +31,25 @@ function Review () {
             console.log('error with POST /api/feedback',error)
         })
     }
+    const gotoFeeling =() =>{
+        history.push('/')
+    }
+    const gotoUnderstand =() =>{
+        history.push('/understand')
+    }
+    const gotoSupported =() =>{
+        history.push('/supported')
+    }
+    const gotoComments =() =>{
+        history.push('/comments')
+    }
     return (
         <div>
             <h2>Review Your Feedback</h2>
-            <p>Feeling: {feelingRank}</p>
-            <p>Understanding: {understandRank}</p>
-            <p>Supported: {supportedRank}</p>
-            <p>Comments: {comments}</p>
+            <p>Feeling: {feelingRank}   <button className="change"> <Link to='/'>Change</Link></button></p>
+            <p>Understanding: {understandRank}     <button className="change"> <Link to='/understand'>Change</Link></button></p>
+            <p>Supported: {supportedRank}    <button className="change"> <Link to='/supported'>Change</Link></button></p>
+            <p>Comments: {comments}     <button className="change"> <Link to='/comments'>Change</Link></button></p>
             <button data-testid="next" onClick={storeRank}>Submit</button>
 
         </div>

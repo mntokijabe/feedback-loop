@@ -17,7 +17,6 @@ function Admin () {
         })
         .then((response)=> {
             setAllRatings(response.data) 
-            console.log(allRatings)
         })
         .catch((error) => {
             console.log('error getting list of feedback',error)

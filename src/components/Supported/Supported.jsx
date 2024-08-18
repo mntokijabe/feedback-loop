@@ -8,7 +8,8 @@ function Supported () {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const storeRank = () => {
+    const storeRank = (event) => {
+        event.preventDefault();
         if(supportedRating > 5 || supportedRating<1) {
             alert('Use a number between 1 and 5')
         }
@@ -30,7 +31,7 @@ function Supported () {
                     placeholder="(1-low, 5-high)"
                     onChange={(e) => setSupportedRating(e.target.value)}
                     value={supportedRating} />
-                <button data-testid="next">Next</button>
+                <button  data-testid="next">Next</button>
             </form>
 
         </div>

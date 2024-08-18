@@ -4,9 +4,10 @@ function AdminList ({feedback, getRatings}) {
 
     
     const removeFeedback = () => {
+        let feedbackToRemove = feedback.id
         axios({
             method: "DELETE",
-            url: (`/api/feedback/${id}`)
+            url: (`/api/feedback/${feedbackToRemove}`)
         })
         .then(response => {
             getRatings()

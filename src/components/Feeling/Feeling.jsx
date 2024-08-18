@@ -8,7 +8,8 @@ function Feeling () {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const storeRank = () => {
+    const storeRank = (event) => {
+        event.preventDefault();
         if(feelingRating > 5 || feelingRating<1) {
             alert('Use a number between 1 and 5')
         }

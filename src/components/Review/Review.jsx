@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import { useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Container, Box, Button, TextField} from "@mui/material";
+import Header1 from "../Header/Header1";
 
 
 function Review () {
@@ -10,7 +12,7 @@ function Review () {
     const understandRank =  useSelector(store=>store.understandRank);
     const supportedRank =  useSelector(store=>store.supportedRank);
     const comments =  useSelector(store=>store.comments);
-
+    
     const ratingSummary = {
         feeling: Number(feelingRank),
         understanding: Number(understandRank),
@@ -45,13 +47,13 @@ function Review () {
     }
     return (
         <div>
+            <Header1 />
             <h2>Review Your Feedback</h2>
-            <p>Feeling: {feelingRank}   <button className="change"> <Link to='/'>Change</Link></button></p>
-            <p>Understanding: {understandRank}     <button className="change"> <Link to='/understand'>Change</Link></button></p>
-            <p>Supported: {supportedRank}    <button className="change"> <Link to='/supported'>Change</Link></button></p>
-            <p>Comments: {comments}     <button className="change"> <Link to='/comments'>Change</Link></button></p>
-            <button data-testid="next" onClick={storeRank}>Submit</button>
-
+            <p>Feeling: {feelingRank}   <Button variant="contained" color="secondary" className="change" sx={{marginLeft:4}}> <Link to='/'>Change</Link></Button></p>
+            <p>Understanding: {understandRank}     <Button variant="contained" color="secondary" className="change" sx={{marginLeft:4}}> <Link to='/understand'>Change</Link></Button></p>
+            <p>Supported: {supportedRank}    <Button variant="contained" color="secondary" className="change" sx={{marginLeft:4}}> <Link to='/supported'>Change</Link></Button></p>
+            <p>Comments: {comments}     <Button variant="contained" color="secondary" className="change" sx={{marginLeft:4}}> <Link to='/comments'>Change</Link></Button></p>
+            <Button variant="contained" color="secondary" data-testid="next" onClick={storeRank}>Submit</Button>
         </div>
     )
 }

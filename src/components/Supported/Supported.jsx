@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Container, Box, Button, TextField} from "@mui/material";
+import Header1 from "../Header/Header1";
 
 
 function Supported () {
@@ -22,18 +24,30 @@ function Supported () {
     }
     return (
         <div>
-            <h2>How well are you being supported?</h2>
-            <form onSubmit={storeRank}>
-                <label>supported?</label>
-                <input required
-                    data-testid="input"
-                    type="number"
-                    placeholder="(1-low, 5-high)"
-                    onChange={(e) => setSupportedRating(e.target.value)}
-                    value={supportedRating} />
-                <button  data-testid="next">Next</button>
-            </form>
-
+            <Box >
+                <Header1 />
+            </Box>
+            <Box sx={{border:1, marginTop:-2.5}}>
+                <h2>How well are you being supported?</h2>
+                <Box  sx={{
+                    display:'flex', 
+                    flexDirection:'row', 
+                    gap:20,
+                    height:100, 
+                    alignItems:'center', 
+                    justifyContent:'center'}}>
+                    <form id="a-form" className="comment" onSubmit={storeRank}>
+                        <label>supported?</label>
+                        <input required
+                            data-testid="input"
+                            type="number"
+                            placeholder="(1-low, 5-high)"
+                            onChange={(e) => setSupportedRating(e.target.value)}
+                            value={supportedRating} />
+                    </form>
+                    <Button variant="contained" color="secondary" type="submit" form="a-form" data-testid="next">Next</Button>
+                </Box>
+            </Box>
         </div>
     )
 }
